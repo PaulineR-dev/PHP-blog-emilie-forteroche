@@ -26,6 +26,20 @@ class AdminController {
     }
 
     /**
+     * Affiche la page de monitoring avec les statistiques des articles.
+     */
+    public function showMonitoring()
+    {
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->getAllArticlesWithStats();
+
+        $view = new View("Monitoring");
+        $view->render("monitoring", [
+            'articles' => $articles
+        ]);
+    }
+
+    /**
      * Vérifie que l'utilisateur est connecté.
      * @return void
      */

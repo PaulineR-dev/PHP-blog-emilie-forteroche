@@ -102,4 +102,26 @@ class ArticleManager extends AbstractEntityManager
         $sql = "UPDATE article SET views = views + 1 WHERE id = :id";
         $this->db->query($sql, ['id' => $id]);
     }
+
+    /**
+     * Récupération des informations des articles avec leurs statistiques.
+     * Utilisé pour la page de monitoring.
+     */
+    public function getAllArticlesWithStats() : array
+    {
+        $sql = "
+            SELECT 
+                article.id,
+                article.title,
+                article.views,
+                article.date_creation,
+                COUNT(comment.id) AS nb_comments
+            FROM article
+            LEFT JOIN comment ON comment.id_article = article.id
+            GROUP BY article.id
+            ORDER BY article.date_creation DESC
+        ";
+
+        return $this->db->query($sql)->fetchAll();
+    }
 }

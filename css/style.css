@@ -362,7 +362,7 @@ footer {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    background-color: white;
+    background-color: var(--backgroundColor);
     font-size: 15px;
 }
 
@@ -382,7 +382,7 @@ footer {
 /* Cellules */
 .monitoring-table td {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--backgroundColor);;
 }
 
 /* Alternance couleur des lignes */
@@ -403,3 +403,18 @@ footer {
     width: 14%;
 }
 
+/* Bouton pour supprimer les commentaires */
+.deleteCommentBtn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: var(--headerColor);
+    color: var(--backgroundColor);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.deleteCommentBtn:hover {
+    background: var(--headerPaleColor);
+}

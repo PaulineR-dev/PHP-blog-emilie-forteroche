@@ -102,6 +102,7 @@ class AdminController {
         // On connecte l'utilisateur.
         $_SESSION['user'] = $user;
         $_SESSION['idUser'] = $user->getId();
+        $_SESSION['admin'] = true;
 
         // On redirige vers la page d'administration.
         Utils::redirect("admin");
@@ -115,6 +116,7 @@ class AdminController {
     {
         // On déconnecte l'utilisateur.
         unset($_SESSION['user']);
+        unset($_SESSION['admin']);
 
         // On redirige vers la page d'accueil.
         Utils::redirect("home");

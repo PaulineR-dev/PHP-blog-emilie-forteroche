@@ -44,4 +44,29 @@ class CommentController
         // On redirige vers la page de l'article.
         Utils::redirect("showArticle", ['id' => $idArticle]);
     }
+
+    public function deleteComment() : void
+    {
+        if (empty($_SESSION['admin']) || $_SESSION['admin'] !== true) {
+            throw new Exception("Accès interdit.");
+        }
+
+        $id = Utils::request("id");
+        if (empty($id)) {
+            throw new Exception("ID du commentaire manquant.");
+        }
+
+        $commentManager = new CommentManager();
+        $comment = $commentManager->getCommentById((int)$id);
+
+        if (!$comment) {
+            throw new Exception("Commentaire introuvable.");
+        }
+
+        // Suppression
+        $commentManager->deleteComment((int)$id);
+
+        // Retour à l'article
+        Utils::redirect("showArticle", ['id' => $comment->getIdArticle()]);
+    }
 }

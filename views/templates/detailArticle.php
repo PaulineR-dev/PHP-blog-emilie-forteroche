@@ -31,6 +31,9 @@
                 echo '  <div class="detailComment">';
                 echo '      <h3 class="info">Le ' . Utils::convertDateToFrenchFormat($comment->getDateCreation()) . ", " . Utils::format($comment->getPseudo()) . ' a écrit :</h3>';
                 echo '      <p class="content">' . Utils::format($comment->getContent()) . '</p>';
+                if (!empty($_SESSION['admin']) && $_SESSION['admin'] === true) {
+                    echo '<a href="index.php?action=deleteComment&id=' . $comment->getId() . '" onclick="return confirm(\'Supprimer ce commentaire ?\');" class="deleteCommentBtn">Supprimer le commentaire</a>';   
+                }
                 echo '  </div>';
                 echo '</li>';
             }               

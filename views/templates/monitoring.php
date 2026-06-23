@@ -1,12 +1,29 @@
+<?php
+function sortChoice($col, $label, $choice, $order) {
+
+    // Détermine le prochain ordre si on clique
+    $next = ($choice === $col && $order === 'asc') ? 'desc' : 'asc';
+
+    if ($choice === $col) {
+        $arrow = $order === 'asc' ? ' ▲' : ' ▼';
+    } else {
+        $arrow = ' ▲';
+    }
+
+    return "<a href='index.php?action=showMonitoring&choice=$col&order=$next'>$label$arrow</a>";
+}
+?>
+
 <h2>Monitoring du blog</h2>
 
 <table class="monitoring-table">
     <thead>
         <tr>
-            <th><a href="index.php?action=showMonitoring&sort=title&order=asc">Noms des articles</a></th>
-            <th><a href="index.php?action=showMonitoring&sort=views&order=asc">Nombre de vues</a></th>
-            <th><a href="index.php?action=showMonitoring&sort=comments&order=asc">Commentaires</a></th>
-            <th><a href="index.php?action=showMonitoring&sort=date&order=asc">Date de publication</a></th>
+            <th><?= sortChoice('title', 'Noms des articles', $choice, $order) ?></th>
+            <th><?= sortChoice('views', 'Nombre de vues', $choice, $order) ?></th>
+            <th><?= sortChoice('comments', 'Commentaires', $choice, $order) ?></th>
+            <th><?= sortChoice('date', 'Date de publication', $choice, $order) ?></th>
+            <th><?= sortChoice('update', 'Date de mise à jour', $choice, $order) ?></th>
         </tr>
     </thead>
 
@@ -17,6 +34,7 @@
                 <td><?= $article['views'] ?></td>
                 <td><?= $article['nb_comments'] ?></td>
                 <td><?= $article['date_creation'] ?></td>
+                <td><?= $article['date_update'] ?></td> 
             </tr>
         <?php endforeach; ?>
     </tbody>

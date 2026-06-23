@@ -30,12 +30,22 @@ class AdminController {
      */
     public function showMonitoring()
     {
-        $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticlesWithStats();
+        // Colonne choisie pour le tri (par défaut : titre)
+        $choice = $_GET['choice'] ?? 'title';
 
+        // Sens du tri (par défaut : ascendant)
+        $order = $_GET['order'] ?? 'asc';
+
+        // Récupération des articles triés selon les paramètres
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->getAllArticlesWithStats($choice, $order);
+
+        // Envoi des données à la vue
         $view = new View("Monitoring");
         $view->render("monitoring", [
-            'articles' => $articles
+            'articles' => $articles,
+            'choice' => $choice,
+            'order' => $order
         ]);
     }
 

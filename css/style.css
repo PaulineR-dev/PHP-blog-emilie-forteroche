@@ -390,12 +390,16 @@ footer {
     background-color: var(--backgroundColor);
 }
 
-/* Centrage des colonnes numériques dans le tableau de monitoring */
+/* Centrage et largeur de colonnes dans le tableau de monitoring */
 .monitoring-table td:nth-child(2),
 .monitoring-table td:nth-child(3),
 .monitoring-table td:nth-child(4),
 .monitoring-table th:nth-child(2),
 .monitoring-table th:nth-child(3),
-.monitoring-table th:nth-child(4) {
+.monitoring-table th:nth-child(4),
+.monitoring-table td:nth-child(5),
+.monitoring-table th:nth-child(5) {
     text-align: center;
+    width: 14%;
 }
+

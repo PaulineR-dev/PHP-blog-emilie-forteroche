@@ -107,19 +107,35 @@ class ArticleManager extends AbstractEntityManager
      * Récupération des informations des articles avec leurs statistiques.
      * Utilisé pour la page de monitoring.
      */
-    public function getAllArticlesWithStats() : array
+    public function getAllArticlesWithStats($choice, $order) : array
     {
+        // Colonnes autorisées
+        $allowed = [
+            'title'    => 'article.title',
+            'views'    => 'article.views',
+            'comments' => 'nb_comments',
+            'date'     => 'article.date_creation',
+            'update'   => 'article.date_update'
+        ];
+
+        // Colonne choisie (sécurisée)
+        $column = $allowed[$choice] ?? 'article.title';
+
+        // Ordre (sécurisé)
+        $order = ($order === 'desc') ? 'DESC' : 'ASC';
+
         $sql = "
             SELECT 
                 article.id,
                 article.title,
                 article.views,
                 article.date_creation,
+                article.date_update,
                 COUNT(comment.id) AS nb_comments
             FROM article
             LEFT JOIN comment ON comment.id_article = article.id
             GROUP BY article.id
-            ORDER BY article.date_creation DESC
+            ORDER BY $column $order
         ";
 
         return $this->db->query($sql)->fetchAll();

@@ -19,9 +19,9 @@ function sortChoice($col, $label, $choice, $order) {
 <table class="monitoring-table">
     <thead>
         <tr>
-            <th><?= sortChoice('title', 'Noms des articles', $choice, $order) ?></th>
+            <th><?= sortChoice('title', 'Titre de l\'article', $choice, $order) ?></th>
             <th><?= sortChoice('views', 'Nombre de vues', $choice, $order) ?></th>
-            <th><?= sortChoice('comments', 'Commentaires', $choice, $order) ?></th>
+            <th><?= sortChoice('comments', 'Nombre de commentaires', $choice, $order) ?></th>
             <th><?= sortChoice('date', 'Date de publication', $choice, $order) ?></th>
             <th><?= sortChoice('update', 'Date de mise à jour', $choice, $order) ?></th>
         </tr>

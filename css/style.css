@@ -400,7 +400,7 @@ footer {
 .monitoring-table td:nth-child(5),
 .monitoring-table th:nth-child(5) {
     text-align: center;
-    width: 14%;
+    width: 15%;
 }
 
 /* Bouton pour supprimer les commentaires */

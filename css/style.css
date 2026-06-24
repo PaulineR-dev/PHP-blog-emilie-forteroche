@@ -387,7 +387,7 @@ footer {
 
 /* Alternance couleur des lignes */
 .monitoring-table tr:nth-child(even) {
-    background-color: var(--backgroundColor);
+    background-color: var(--headerPaleColor);
 }
 
 /* Centrage et largeur de colonnes dans le tableau de monitoring */

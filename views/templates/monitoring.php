@@ -1,16 +1,16 @@
 <?php
-function sortChoice($col, $label, $choice, $order) {
+function sortChoice($column, $label, $choice, $order) {
 
     // Détermine le prochain ordre si on clique
-    $next = ($choice === $col && $order === 'asc') ? 'desc' : 'asc';
+    $next = ($choice === $column && $order === 'asc') ? 'desc' : 'asc';
 
-    if ($choice === $col) {
+    if ($choice === $column) {
         $arrow = $order === 'asc' ? ' ▲' : ' ▼';
     } else {
         $arrow = ' ▲';
     }
 
-    return "<a href='index.php?action=showMonitoring&choice=$col&order=$next'>$label$arrow</a>";
+    return "<a href='index.php?action=showMonitoring&choice=$column&order=$next'>$label$arrow</a>";
 }
 ?>
 

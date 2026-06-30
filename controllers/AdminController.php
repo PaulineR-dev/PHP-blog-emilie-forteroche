@@ -30,6 +30,9 @@ class AdminController {
      */
     public function showMonitoring()
     {
+        // On vérifie que l'utilisateur est connecté.
+        $this->checkIfUserIsConnected();
+
         // Colonne choisie pour le tri (par défaut : titre)
         $choice = $_GET['choice'] ?? 'title';
 
